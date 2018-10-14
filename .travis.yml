@@ -17,7 +17,7 @@ after_script:
 
 branches:
   only:
-  - master # 只检测master分支的代码提交
+  - master # 只检测master分支的代码提交    
 
 before_install:
 # openssl这段执行  travis encrypt-file ~/.ssh/id_rsa --add  这个命令，会自动生成下面的代码写入这里，注意将~.\/这个反斜杠删除
