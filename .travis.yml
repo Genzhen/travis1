@@ -7,14 +7,13 @@ install:
 
 #执行测试
 script:
-- npm run e2e #执行e2e测试
 - npm run unit #执行单元测试
 - npm run server #执行接口测试
 
 # 项目构建完毕将部署代码部署到服务器
 after_script:
 - rm -rf node_modules #删除，要不复制太费时间
-- scp -o stricthostkeychecking=no  -r ./* root@140.143.202.200:/usr/share/nginx/html/test   #拷贝该项目所有文件到服务器，只是为了测试自动部署流程
+# - scp -o stricthostkeychecking=no  -r ./* root@140.143.202.200:/usr/share/nginx/html/test   #拷贝该项目所有文件到服务器，只是为了测试自动部署流程
 
 branches:
   only:
