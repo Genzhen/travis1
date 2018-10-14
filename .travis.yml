@@ -1,0 +1,31 @@
+language: node_js  #语言设置
+node_js: stable   #安装node稳定版，也可以指定具体版本号
+
+#安装项目依赖
+install:
+- npm install  #安装package.json中的依赖
+
+#执行测试
+script:
+- npm run e2e #执行e2e测试
+- npm run unit #执行单元测试
+- npm run server #执行接口测试
+
+# 项目构建完毕将部署代码部署到服务器
+after_script:
+- rm -rf node_modules #删除，要不复制太费时间
+- scp -o stricthostkeychecking=no  -r ./* root@140.143.202.200:/usr/share/nginx/html/test   #拷贝该项目所有文件到服务器，只是为了测试自动部署流程
+
+branches:
+  only:
+  - master # 只检测master分支的代码提交
+
+before_install:
+# openssl这段执行  travis encrypt-file ~/.ssh/id_rsa --add  这个命令，会自动生成下面的代码写入这里，注意将~.\/这个反斜杠删除
+# - openssl aes-256-cbc -K $encrypted_adfd768a7744_key -iv $encrypted_adfd768a7744_iv
+#   -in id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa # 给秘钥设置600权限
+
+#还有一点可能会用上，因为 travis 第一次登录远程服务器会出现 SSH 主机验证，这边会有一个主机信任问题。官方给出的方案是添加 addons 配置：
+addons:
+  ssh_known_hosts: 140.143.202.200 #服务器的ip地址

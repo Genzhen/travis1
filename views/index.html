@@ -1,0 +1,26 @@
+{% extends './layout.html' %}
+{% block title %}图书馆管理系统{% endblock %}
+{% block head %}
+<script src="../js/jquery.js"></script>
+<script src="../js/index.js"></script>
+{% endblock  %}
+{% block content %}
+<table border="1" style="margin-top: 10px;font-size: x-large">
+    <thead>
+        <tr>
+            <th>书名</th>
+            <th>操作</th>
+        <tr>
+    </thead>
+    <tbody class="t-body">
+    </tbody>
+</table>
+<div class="form-group" style="display:none">
+    <input type="text" id="name" placeholder="请输入书名">
+    <input type="text" id="id" placeholder="请输入编号">
+    <button id="sure">确认提交</button>
+</div>
+{% endblock %}
+    
+
+   
